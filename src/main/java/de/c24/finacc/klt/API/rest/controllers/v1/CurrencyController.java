@@ -1,0 +1,29 @@
+package de.c24.finacc.klt.API.rest.controllers.v1;
+import de.c24.finacc.klt.API.rest.Models.Response.Envelope;
+import de.c24.finacc.klt.Core.IApplicationService.ICurrencyService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.Map;
+import static java.time.LocalDateTime.now;
+import static org.springframework.http.HttpStatus.OK;
+
+@RestController
+@RequestMapping("/api/v1/currency")
+@RequiredArgsConstructor
+public class CurrencyController {
+    private final ICurrencyService _currencyService;
+    @GetMapping
+    public ResponseEntity<Envelope> getCurrencies() {
+        var result = _currencyService.getList() ;
+        return ResponseEntity.ok(
+                Envelope.builder().timeStamp(now())
+                        .data(Map.of("currencies", result))
+                        .message("currencies retrieved")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        ) ;
+    }
+
+}
