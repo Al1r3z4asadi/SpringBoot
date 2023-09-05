@@ -1,0 +1,9 @@
+Add Redis for caching -- done
+
+Write Some Tests
+
+Add logging(Should I Add Elastic Search ?) and Exception Handling -- ignoring (I am getting bored)
+
+Thymleaf
+
+Dockerizing Project

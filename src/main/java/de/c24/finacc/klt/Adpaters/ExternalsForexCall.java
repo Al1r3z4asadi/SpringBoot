@@ -32,16 +32,17 @@ public class ExternalsForexCall implements IExtenralForexCall {
     }
 
     @Override
-    public HashSet<Currency> getCurrencies() {
+    public HashMap<String , BigDecimal> getCurrencies() {
         String forex = this.createUrl(forexUrl) ;
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String json = this._rest.getForEntity(forex, String.class).getBody() ;
             var info = objectMapper.readValue(json, ExchangeRatesDTO.class);
-            return ExchangeRatesDTO.ToEntity(info.getRates()) ;
+            return info.getRates() ;
         }catch (Exception ex){
             //TODO: For now just a silent catch
+            // » Log for the adapter layer
         }
-        return new  HashSet<Currency>() ;
+        return new  HashMap<String , BigDecimal>() ;
     }
 }

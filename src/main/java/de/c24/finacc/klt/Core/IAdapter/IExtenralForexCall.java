@@ -8,5 +8,5 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public interface IExtenralForexCall {
-    HashSet<Currency> getCurrencies();
+    HashMap<String , BigDecimal> getCurrencies();
 }
