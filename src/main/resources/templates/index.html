@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${title}">KuK KLT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1 th:text="${welcome}">alkdfj; laskdfjal; sdfj</h1>
-
-<h2 th:text="${applicationTitle}"></h2>
-<p th:text="${USD.Name}"></p> <p th:text="${USD.Amount}"></p>
+<div class="container">
+    <h1>Currency Converter</h1>
+    <form action="#" th:action="@{/convert}" th:object="${conversionForm}" method="post">
+        <div class="input-group">
+            <input type="number" th:field="*{amountFrom}" placeholder="Amount">
+            <select th:field="*{currencyFrom}">
+                <option th:each="currency : ${data}" th:value="${currency.getName()}" th:text="${currency.getName()}"></option>
+            </select>
+        </div>
+        <div class="input-group">
+            <input type="number" th:field="*{amountTo}" placeholder="Converted Amount" readonly>
+            <select th:field="*{currencyTo}">
+                <option th:each="currency : ${data}" th:value="${currency.getName()}" th:text="${currency.getName()}"></option>
+            </select>
+        </div>
+        <button type="submit">Convert</button>
+    </form>
+</div>
 </body>
 </html>
