@@ -1,0 +1,11 @@
+version: '3'
+services:
+    spring-app:
+        build: .
+        ports:
+            - "8080:8080"
+        
+    redis:
+        image: redis:latest
+        ports:
+          - "6379:6379"

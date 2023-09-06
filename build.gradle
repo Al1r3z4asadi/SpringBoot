@@ -2,12 +2,11 @@ plugins {
     id 'org.springframework.boot' version '3.0.0'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
-    id 'checkstyle'
 }
 
 
-project.group = 'de.c24.finacc'
-project.version = '0.0.1-SNAPSHOT'
+//project.group = 'de.c24.finacc'
+//project.version = '0.0.1-SNAPSHOT'
 
 configurations {
     compileOnly {
@@ -15,10 +14,7 @@ configurations {
     }
 }
 
-checkstyle {
-    toolVersion = "9.3"
-    configDirectory.set(file("${rootProject.projectDir}"))
-}
+
 
 repositories {
     mavenCentral()
