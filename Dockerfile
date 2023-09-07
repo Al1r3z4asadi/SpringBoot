@@ -1,23 +1,19 @@
-FROM openjdk:17-jdk-slim as builder
+FROM openjdk:18-jdk-alpine3.14 as build
 
-WORKDIR /app
+WORKDIR /home
 MAINTAINER Al1r3z4asadi
 
-COPY src ./src
-COPY finacc-forex.jar .
-COPY build.gradle .
-COPY gradlew .
-COPY gradle ./gradle
+COPY . .
 
 
-RUN ./gradlew clean build
+RUN ./gradlew clean build --refresh-dependencies
 
-FROM openjdk:17-jdk-slim
+FROM openjdk:18-jdk-alpine3.14
 
-WORKDIR /app
+WORKDIR /home
 
-COPY --from=builder /app/build/libs/finacc-klt.jar app.jar
+COPY --from=build ./build/libs/finacc-klt.jar ups.jar
 EXPOSE 8080
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "ups.jar"]
 
