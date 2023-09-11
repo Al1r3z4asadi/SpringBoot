@@ -4,8 +4,24 @@ services:
         build: .
         ports:
             - "8080:8080"
-        
+        networks:
+            - backend
+        container_name: backend
+    forex-api:
+        build: api
+        ports:
+            - "9090:9090"
+        networks:
+            - backend
+        container_name: api_forex
     redis:
         image: redis:latest
         ports:
           - "6379:6379"
+        networks:
+          - backend
+
+networks:
+  backend:
+    driver: bridge
+    name: backend
